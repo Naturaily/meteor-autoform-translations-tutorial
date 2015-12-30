@@ -1,0 +1,27 @@
+<head>
+  <title>meteortranslations</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{#if currentUser}}
+    {{> forLoggedIn}}
+  {{else}}
+    {{> forLoggedOut}}
+  {{/if}}
+</body>
+
+<template name="forLoggedIn">
+  <a id="logout" href="#">
+    logout
+  </a>
+</template>
+
+<template name="forLoggedOut">
+  <h2>Sign in</h2>
+  {{> quickForm id="signInForm" schema="LoginSchema"}}
+
+  <h2>Sign up</h2>
+  {{> quickForm id="signUpForm" schema="RegistrationSchema"}}
+</template>
