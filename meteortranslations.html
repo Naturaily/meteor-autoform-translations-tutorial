@@ -3,25 +3,29 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <div class="container">
+    <h1>{{_ 'title'}}</h1>
 
-  {{#if currentUser}}
-    {{> forLoggedIn}}
-  {{else}}
-    {{> forLoggedOut}}
-  {{/if}}
+    {{> i18n_dropdown}}
+
+    {{#if currentUser}}
+      {{> forLoggedIn}}
+    {{else}}
+      {{> forLoggedOut}}
+    {{/if}}
+  </div>
 </body>
 
 <template name="forLoggedIn">
-  <a id="logout" href="#">
-    logout
+  <a id="logout" href="#" class="btn btn-default">
+    {{_ 'logout'}}
   </a>
 </template>
 
 <template name="forLoggedOut">
-  <h2>Sign in</h2>
+  <h2>{{_ 'signIn'}}</h2>
   {{> quickForm id="signInForm" schema="LoginSchema"}}
 
-  <h2>Sign up</h2>
+  <h2>{{_ 'signUp'}}</h2>
   {{> quickForm id="signUpForm" schema="RegistrationSchema"}}
 </template>

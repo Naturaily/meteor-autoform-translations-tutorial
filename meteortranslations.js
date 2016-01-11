@@ -34,6 +34,11 @@ RegistrationSchema = new SimpleSchema({
       afFieldInput: {
         type: 'password'
       }
+    },
+    custom: function() {
+      if (this.isSet && this.value !== this.field('password').value) {
+        return 'invalidPasswordConfirmation';
+      }
     }
   }
 });
@@ -60,10 +65,59 @@ if (Meteor.isClient) {
       Meteor.logout();
     }
   });
-}
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
+  function parseError(error) {
+    var errors = {
+      'User not found': [
+        {
+          name: 'login',
+          type: 'incorrect'
+        }
+      ],
+      'Incorrect password': [
+        {
+          name: 'password',
+          type: 'incorrect'
+        }
+      ],
+      'Username already exists.': [
+        {
+          name: 'username',
+          type: 'taken'
+        }
+      ],
+      'Email already exists.': [
+        {
+          name: 'email',
+          type: 'taken'
+        }
+      ]
+    };
+
+    return errors[error.reason];
+  }
+
+  AutoForm.addHooks(null, {
+    onError: function (e, error) {
+      var errors = parseError(error);
+      
+      if (errors) {
+        var names = _.map(errors, function(error) {
+          return error.name;
+        });
+
+        errors.forEach(function(error) {
+          this.addStickyValidationError(error.name, error.type);
+        }.bind(this));
+        
+        this.template.$('form').on('input', 'input', function(event) {
+          var name = event.target.name;
+
+          if (_.contains(names, name)) {
+            this.removeStickyValidationError(name);
+          }
+        }.bind(this));
+      }
+    }
   });
 }

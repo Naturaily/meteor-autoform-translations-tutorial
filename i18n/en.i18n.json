@@ -1,0 +1,25 @@
+{
+  "title" : "Welcome to Meteor!",
+  "signUp" : "Sign up",
+  "signIn" : "Sign in",
+  "logout" : "logout",
+  "simpleSchema" : {
+    "errors" : {
+      "invalidPasswordConfirmation" : "Password confirmation doesn't match Password",
+      "incorrect" : "Invalid [label]",
+      "taken" : "[label] already exists"
+    },
+    "labels" : {
+      "RegistrationSchema" : {
+        "password" : "",
+        "passwordConfirmation" : "",
+        "username" : "",
+        "email" : ""
+      },
+      "LoginSchema" : {
+        "login" : "Username or email",
+        "password" : ""
+      }
+    }
+  }
+}

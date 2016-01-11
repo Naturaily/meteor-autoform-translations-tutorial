@@ -1,0 +1,29 @@
+{
+  "title" : "Witaj!",
+  "signUp" : "Zarejestruj się",
+  "signIn" : "Zaloguj się",
+  "logout" : "Wyloguj się",
+  "simpleSchema" : {
+    "errors" : {
+      "invalidPasswordConfirmation" : "Hasła nie są takie same",
+      "required": "[label] jest wymagany",
+      "incorrect" : "[label] jest niepoprawny",
+      "taken" : "[label] jest zajęty",
+      "regex" : {
+        "SimpleSchema.RegEx.Email" : "[label] musi być poprawnym adresem e-mail"
+      }
+    },
+    "labels" : {
+      "RegistrationSchema" : {
+        "password" : "Hasło",
+        "passwordConfirmation" : "Powtórz hasło",
+        "username" : "Nazwa użytkownika",
+        "email" : ""
+      },
+      "LoginSchema" : {
+        "login" : "Nazwa użytkownika lub adres e-mail",
+        "password" : "Hasło"
+      }
+    }
+  }
+}
